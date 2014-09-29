@@ -1,5 +1,7 @@
 # WikidataAPI
 
+[![Build Status](https://api.travis-ci.org/wmde/WikidataApiGem.png?branch=master)](http://travis-ci.org/wmde/WikidataApiGem)
+
 A library for interacting with the Wikidata API from Ruby.
 Extends the [MediaWiki API Gem](https://github.com/wikimedia/mediawiki-ruby-api).
 
