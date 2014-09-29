@@ -1,4 +1,4 @@
-require "mediawiki_api/wikidata/wikidata_client"
+require "mediawiki_api/wikidata/version"
 
 module MediawikiApi
   module Wikidata
