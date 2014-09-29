@@ -1,3 +1,6 @@
+# Author:: Tobias Gritschacher (tobias.gritschacher@wikimedia.de)
+# License:: GNU GPL v2+
+
 require "mediawiki_api/wikidata/version"
 
 module MediawikiApi
@@ -5,7 +8,7 @@ module MediawikiApi
     class WikidataClient < Client
 
       def create_entity(data, type = "item")
-        action(:wbeditentity, token_type: "edit", new: type, data: data, summary:"Created entity using mediawiki_api-wikidata gem")
+        action(:wbeditentity, token_type: "edit", new: type, data: data, summary:"Created entity using mediawiki_api/wikidata gem")
       end
 
     end
