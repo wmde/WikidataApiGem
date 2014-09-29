@@ -29,7 +29,7 @@ wikidata_client.create_entity "data" #create a new item specified by "data"
 
 ## Release notes
 
-### 0.0.1 2014-09-29
+### 0.0.1 (2014-09-29)
 
 - Initial version
 - supports creation of entities via wbeditentity

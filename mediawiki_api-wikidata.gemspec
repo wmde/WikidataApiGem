@@ -18,4 +18,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "mediawiki_api", "~> 0.2.0"
+
+  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "rake", "~> 0"
+  spec.add_development_dependency "rspec", "~> 3.0", ">= 3.0.0"
+  spec.add_development_dependency "webmock", "~> 1.17", ">= 1.17.2"
+  spec.add_development_dependency "redcarpet"
+  spec.add_development_dependency "yard"
 end
