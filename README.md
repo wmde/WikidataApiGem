@@ -25,6 +25,7 @@ require "mediawiki_api/wikidata"
 wikidata_client = MediawikiApi::Wikidata::WikidataClient.new "http://127.0.0.1/w/api.php" #instantiate new client
 wikidata_client.log_in "username", "password" #log in via the API
 wikidata_client.create_entity "data" #create a new item specified by "data"
+```
 
 ## Release notes
 
