@@ -9,7 +9,8 @@ module MediawikiApi
     class WikidataClient < Client
 
       def create_entity(entity_data, type)
-        action(:wbeditentity, token_type: "edit", new: type, data: entity_data, summary: "Created entity using mediawiki_api/wikidata gem")
+        action(:wbeditentity, token_type: "edit", new: type, data: entity_data,
+               summary: "Created entity using mediawiki_api/wikidata gem")
       end
 
       def create_item(item_data)
@@ -20,18 +21,32 @@ module MediawikiApi
         create_entity(property_data, "property")
       end
 
-      def set_sitelink(entity_id = nil, site_id = nil, title = nil, sitelink_site_id, sitelink_title, badges)
-        params = { token_type: "edit", linksite: sitelink_site_id, linktitle: sitelink_title, badges: badges, summary: "Set sitelink using mediawiki_api/wikidata gem" }
-        action(:wbsetsitelink, params.merge(get_entity_identifier(entity_id, site_id, title)))
+      def set_sitelink(entity_identifier, sitelink_site_id, sitelink_title = nil, badges = nil)
+        params = { token_type: "edit", linksite: sitelink_site_id, linktitle: sitelink_title, badges: badges,
+                   summary: "Set sitelink using mediawiki_api/wikidata gem" }
+        action(:wbsetsitelink, params.merge(parse_entity_identifier(entity_identifier)))
+      end
+
+      def add_sitelink(entity_identifier, sitelink_site_id, sitelink_title, badges = nil)
+        set_sitelink(entity_identifier, sitelink_site_id, sitelink_title, badges)
+      end
+
+      def remove_sitelink(entity_identifier, sitelink_site_id)
+        set_sitelink(entity_identifier, sitelink_site_id)
+      end
+
+      def sitelink_exists?(site_id, title)
+        resp = action(:wbgetentities, token_type: "edit", sites: [site_id], titles: [title] )
+        !resp.data["entities"]["-1"]
       end
 
       private
 
-      def get_entity_identifier(entity_id, site_id, title)
-        if entity_id
-          { id: entity_id }
-        elsif site_id && title
-          { site: site_id, title: title }
+      def parse_entity_identifier(identifier)
+        if identifier.is_a?(::Hash)
+          { site: identifier[:site_id], title: identifier[:title] }
+        elsif identifier.is_a?(String)
+          { id: identifier }
         else
           raise EntityIdentifierMismatchError, "Either entity id or site id and page title need to be set to identify the entity."
         end
