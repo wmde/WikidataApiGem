@@ -31,7 +31,7 @@ wikidata_client.create_entity "data" #create a new item specified by "data"
 
 ## Release notes
 
-### 0.0.2 (dev)
+### 0.0.2 (2014-10-08)
 
 - support setting sitelinks
 - support removing sitelinks
