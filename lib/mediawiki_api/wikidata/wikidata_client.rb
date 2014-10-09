@@ -9,8 +9,7 @@ module MediawikiApi
     class WikidataClient < Client
 
       def create_entity(entity_data, type)
-        action(:wbeditentity, token_type: "edit", new: type, data: entity_data,
-               summary: "Created entity using mediawiki_api/wikidata gem")
+        action(:wbeditentity, token_type: "edit", new: type, data: entity_data)
       end
 
       def create_item(item_data)
@@ -22,8 +21,7 @@ module MediawikiApi
       end
 
       def set_sitelink(entity_identifier, sitelink_site_id, sitelink_title = nil, badges = nil)
-        params = { token_type: "edit", linksite: sitelink_site_id, linktitle: sitelink_title, badges: badges,
-                   summary: "Set sitelink using mediawiki_api/wikidata gem" }
+        params = { token_type: "edit", linksite: sitelink_site_id, linktitle: sitelink_title, badges: badges}
         action(:wbsetsitelink, params.merge(parse_entity_identifier(entity_identifier)))
       end
 
