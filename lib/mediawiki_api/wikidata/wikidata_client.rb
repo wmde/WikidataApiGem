@@ -43,6 +43,10 @@ module MediawikiApi
                continue: continue)
       end
 
+      def create_claim(entity_id, snaktype = "value", property_id, value_data)
+        action(:wbcreateclaim, token_type: "edit", entity: entity_id, snaktype: snaktype, property: property_id, value: value_data)
+      end
+
       private
 
       def parse_entity_identifier(identifier)

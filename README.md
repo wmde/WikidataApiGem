@@ -26,10 +26,18 @@ require "mediawiki_api/wikidata"
 
 wikidata_client = MediawikiApi::Wikidata::WikidataClient.new "http://127.0.0.1/w/api.php" #instantiate new client
 wikidata_client.log_in "username", "password" #log in via the API
-wikidata_client.create_entity "data" #create a new item specified by "data"
+wikidata_client.create_item "data" #create a new item specified by "data"
+wikidata_client.create_property "data" #create a new property specified by "data"
+wikidata_client.add_sitelink "Q1234", "enwiki", "Berlin" #add a new sitelink enwiki/Berlin to item Q1234
+wikidata_client.remove_sitelink "Q1234", "enwiki" #remove enwiki sitelink from item Q1234
+wikidata_client.sitelink_exists? "enwiki", "Berlin" #returns true if enwiki/Berlin sitelink exists, false otherwise
+wikidata_client.create_claim "Q1234", "value", "P1234", '"test"' #adds claim with property P1234 and value "test" to item Q1234
 ```
 
 ## Release notes
+
+### 0.1 (dev)
+- support creating claims
 
 ### 0.0.2 (2014-10-09)
 
