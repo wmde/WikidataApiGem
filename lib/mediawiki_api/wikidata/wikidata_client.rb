@@ -34,8 +34,13 @@ module MediawikiApi
       end
 
       def sitelink_exists?(site_id, title)
-        resp = action(:wbgetentities, token_type: "edit", sites: [site_id], titles: [title] )
+        resp = action(:wbgetentities, token_type: false, sites: [site_id], titles: [title] )
         !resp.data["entities"]["-1"]
+      end
+
+      def search_entities(search, language, entity_type, limit = 10, continue = nil)
+        action(:wbsearchentities, token_type: false, search: search, language: language, type: entity_type, limit: limit,
+               continue: continue)
       end
 
       def create_claim(entity_id, snaktype = "value", property_id, value_data)

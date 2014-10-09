@@ -150,4 +150,25 @@ describe MediawikiApi::Wikidata::WikidataClient do
       expect(@edit_request).to have_been_requested
     end
   end
+  describe "#search_entities" do
+    subject { client.search_entities(search, language, entity_type, limit, continue) }
+
+    let(:search) { "test" }
+    let(:language) { "en" }
+    let(:entity_type) { "item" }
+    let(:limit) { 10 }
+    let(:continue) { "" }
+    let(:response) { {} }
+
+    before do
+      @edit_request = stub_action_request_without_token(:wbsearchentities, search: search, language: language, type: entity_type,
+                                                        limit: limit, continue: continue).
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
 end
