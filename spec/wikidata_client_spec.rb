@@ -130,4 +130,24 @@ describe MediawikiApi::Wikidata::WikidataClient do
     end
   end
 
+  describe "#create_claim" do
+    subject { client.create_claim(entity_id, snaktype, property_id, value) }
+
+    let(:entity_id) { "Q1234" }
+    let(:snaktype) { "value" }
+    let(:property_id) { "P1234" }
+    let(:value) { '"stringtest"' }
+    let(:response) { {} }
+
+    before do
+      stub_token_request(:edit)
+      @edit_request = stub_action_request(:wbcreateclaim, entity: entity_id, snaktype: snaktype, property: property_id, value: value).
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
 end
