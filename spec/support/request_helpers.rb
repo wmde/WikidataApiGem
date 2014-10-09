@@ -24,6 +24,12 @@ module MediawikiApi::Wikidata::RequestHelpers
     stub_api_request(method, params.merge(action: action, token: mock_token))
   end
 
+  def stub_action_request_without_token(action, params = {})
+    method = params.delete(:http_method) || :post
+
+    stub_api_request(method, params.merge(action: action))
+  end
+
   def stub_token_request(type, warning = nil)
     response = { tokens: { "#{type}token" => mock_token } }
     response[:warnings] = { type => { "*" => [warning] } } unless warning.nil?
