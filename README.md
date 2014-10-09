@@ -37,7 +37,8 @@ wikidata_client.search_entities "test", "en", "item" #searches for items contain
 
 ## Release notes
 
-### 0.1 (dev)
+### 0.1 (2014-10-09)
+- feature complete for [Wikidata BrowserTests](https://github.com/wmde/WikidataBrowserTests)
 - support creating claims
 - support searching entities
 
