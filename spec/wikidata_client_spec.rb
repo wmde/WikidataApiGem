@@ -171,4 +171,40 @@ describe MediawikiApi::Wikidata::WikidataClient do
       expect(@edit_request).to have_been_requested
     end
   end
+
+  describe "#get_entities (by IDs)" do
+    subject { client.get_entities(entity_identifiers) }
+
+    let(:entity_identifiers) { ["Q1234", "Q2345"] }
+    let(:response) { {} }
+
+    before do
+      stub_token_request(:edit)
+      @edit_request = stub_action_request_without_token(:wbgetentities, ids: "Q1234|Q2345").
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
+
+  describe "#get_entities (by site_ids/titles)" do
+    subject { client.get_entities(entity_identifiers) }
+
+    let(:entity_identifiers) { {site_ids: ["dewiki", "enwiki"], titles: ["Afghanistan", "Bee Gees"]} }
+    let(:response) { {} }
+
+    before do
+      stub_token_request(:edit)
+      @edit_request = stub_action_request_without_token(:wbgetentities, sites: "dewiki|enwiki", titles: "Afghanistan|Bee Gees").
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
 end

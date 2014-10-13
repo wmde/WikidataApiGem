@@ -34,7 +34,7 @@ module MediawikiApi
       end
 
       def sitelink_exists?(site_id, title)
-        resp = action(:wbgetentities, token_type: false, sites: [site_id], titles: [title] )
+        resp = get_entities({site_ids: [site_id], titles: [title]}, ["info"])
         !resp.data["entities"]["-1"]
       end
 
@@ -47,6 +47,12 @@ module MediawikiApi
         action(:wbcreateclaim, token_type: "edit", entity: entity_id, snaktype: snaktype, property: property_id, value: value_data)
       end
 
+      def get_entities(entity_identifiers, props = false, languages = false, sitefilter = false, ungroupedlist = false, redirects = false, languagefallback = false, normalize = false)
+        params = { token_type: false, props: props, languages: languages, sitefilter: sitefilter,
+                   ungroupedlist: ungroupedlist, redirects: redirects, languagefallback: languagefallback, normalize: normalize }
+        action(:wbgetentities, params.merge(parse_entity_identifiers(entity_identifiers)))
+      end
+
       private
 
       def parse_entity_identifier(identifier)
@@ -56,6 +62,16 @@ module MediawikiApi
           { id: identifier }
         else
           raise EntityIdentifierMismatchError, "Either entity id or site id and page title need to be set to identify the entity."
+        end
+      end
+
+      def parse_entity_identifiers(identifiers)
+        if identifiers.is_a?(::Hash)
+          { sites: identifiers[:site_ids], titles: identifiers[:titles] }
+        elsif identifiers.is_a?(Array)
+          { ids: identifiers }
+        else
+          raise EntityIdentifierMismatchError, "Either an array of entity ids or site ids and page titles need to be set to identify the entity."
         end
       end
 
