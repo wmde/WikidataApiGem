@@ -1,4 +1,4 @@
-# WikidataAPI
+# Wikidata API Gem
 
 [![Build Status](https://api.travis-ci.org/wmde/WikidataApiGem.png?branch=master)](http://travis-ci.org/wmde/WikidataApiGem)
 
@@ -37,21 +37,21 @@ wikidata_client.search_entities "test", "en", "item" #searches for items contain
 
 ## Release notes
 
-### 0.1 (2014-10-09)
-- feature complete for [Wikidata BrowserTests](https://github.com/wmde/WikidataBrowserTests)
-- support creating claims
-- support searching entities
+### 0.1.0 (2014-10-09)
+- Feature complete for [Wikidata BrowserTests](https://github.com/wmde/WikidataBrowserTests)
+- Support creating claims
+- Support searching entities
 
 ### 0.0.2 (2014-10-09)
 
-- support adding sitelinks
-- support changing sitelinks
-- support removing sitelinks
-- support checking for existing sitelinks
-- provide separate methods for creating items and properties
-- removed custom edit summaries
+- Support adding sitelinks
+- Support changing sitelinks
+- Support removing sitelinks
+- Support checking for existing sitelinks
+- Provide separate methods for creating items and properties
+- Removed custom edit summaries
 
 ### 0.0.1 (2014-09-29)
 
 - Initial version
-- supports creation of entities via wbeditentity
+- Supports creation of entities via wbeditentity
