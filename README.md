@@ -37,6 +37,9 @@ wikidata_client.search_entities "test", "en", "item" #searches for items contain
 
 ## Release notes
 
+### 0.2.0 (2015-10-09)
+- Compatible with [mediawiki_api 5.0](https://rubygems.org/gems/mediawiki_api/versions/0.5.0)
+
 ### 0.1.0 (2014-10-09)
 - Feature complete for [Wikidata BrowserTests](https://github.com/wmde/WikidataBrowserTests)
 - Support creating claims
