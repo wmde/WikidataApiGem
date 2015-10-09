@@ -92,7 +92,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:entity_identifier) { {site_id: "dewiki", title: "Berlin"} }
     let(:sitelink_site_id) { "itwiki" }
     let(:sitelink_title) { "Berlino" }
-    let(:badges) { nil }
+    let(:badges) { true }
     let(:response) { {} }
 
     before do
@@ -114,7 +114,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:entity_identifier) { "Q1234" }
     let(:sitelink_site_id) { "itwiki" }
     let(:sitelink_title) { "Berlino" }
-    let(:badges) { nil }
+    let(:badges) { true }
     let(:response) { {} }
 
     before do
