@@ -31,10 +31,10 @@ module MediawikiApi::Wikidata::RequestHelpers
   end
 
   def stub_token_request(type, warning = nil)
-    response = { tokens: { "#{type}token" => mock_token } }
-    response[:warnings] = { type => { "*" => [warning] } } unless warning.nil?
+    response = { query: { tokens: { "#{type}token" => mock_token } } }
+    response[:warnings] = { type => { '*' => [warning] } } unless warning.nil?
 
-    stub_api_request(:get, action: "tokens", type: type).
+    stub_api_request(:get, action: 'query', meta: 'tokens', type: type).
         to_return(body: response.to_json)
   end
 end

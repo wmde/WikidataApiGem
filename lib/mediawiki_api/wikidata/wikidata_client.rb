@@ -9,7 +9,7 @@ module MediawikiApi
     class WikidataClient < Client
 
       def create_entity(entity_data, type)
-        action(:wbeditentity, token_type: "edit", new: type, data: entity_data)
+        action(:wbeditentity, token_type: "csrf", new: type, data: entity_data)
       end
 
       def create_item(item_data)
@@ -21,7 +21,7 @@ module MediawikiApi
       end
 
       def set_sitelink(entity_identifier, sitelink_site_id, sitelink_title = nil, badges = nil)
-        params = { token_type: "edit", linksite: sitelink_site_id, linktitle: sitelink_title, badges: badges}
+        params = { token_type: "csrf", linksite: sitelink_site_id, linktitle: sitelink_title, badges: badges}
         action(:wbsetsitelink, params.merge(parse_entity_identifier(entity_identifier)))
       end
 
@@ -44,7 +44,7 @@ module MediawikiApi
       end
 
       def create_claim(entity_id, snaktype = "value", property_id, value_data)
-        action(:wbcreateclaim, token_type: "edit", entity: entity_id, snaktype: snaktype, property: property_id, value: value_data)
+        action(:wbcreateclaim, token_type: "csrf", entity: entity_id, snaktype: snaktype, property: property_id, value: value_data)
       end
 
       private

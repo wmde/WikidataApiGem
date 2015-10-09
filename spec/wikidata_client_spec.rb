@@ -18,7 +18,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbeditentity, data: data, new: type).
           to_return(body: response.to_json)
     end
@@ -37,7 +37,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbeditentity, data: data, new: "item").
           to_return(body: response.to_json)
     end
@@ -56,7 +56,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbeditentity, data: data, new: "property").
           to_return(body: response.to_json)
     end
@@ -75,7 +75,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbeditentity, data: data, new: "property").
           to_return(body: response.to_json)
     end
@@ -96,7 +96,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbsetsitelink, site: "dewiki", title: "Berlin", linksite: sitelink_site_id,
                                           linktitle: sitelink_title, badges: badges).
           to_return(body: response.to_json)
@@ -118,7 +118,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbsetsitelink, id: "Q1234", linksite: sitelink_site_id,
                                           linktitle: sitelink_title, badges: badges).
           to_return(body: response.to_json)
@@ -140,7 +140,7 @@ describe MediawikiApi::Wikidata::WikidataClient do
     let(:response) { {} }
 
     before do
-      stub_token_request(:edit)
+      stub_token_request(:csrf)
       @edit_request = stub_action_request(:wbcreateclaim, entity: entity_id, snaktype: snaktype, property: property_id, value: value).
           to_return(body: response.to_json)
     end
