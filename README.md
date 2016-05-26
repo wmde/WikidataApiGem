@@ -37,6 +37,9 @@ wikidata_client.search_entities "test", "en", "item" #searches for items contain
 
 ## Release notes
 
+### 0.2.1 (2016-05-26)
+- Compatible with [mediawiki_api 6.0](https://rubygems.org/gems/mediawiki_api/versions/0.6.0)
+
 ### 0.2.0 (2015-10-09)
 - Compatible with [mediawiki_api 5.0](https://rubygems.org/gems/mediawiki_api/versions/0.5.0)
 
