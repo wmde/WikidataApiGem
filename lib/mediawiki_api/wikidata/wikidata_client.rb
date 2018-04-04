@@ -47,6 +47,18 @@ module MediawikiApi
         action(:wbcreateclaim, token_type: "csrf", entity: entity_id, snaktype: snaktype, property: property_id, value: value_data)
       end
 
+      def get_entities(ids, site_id)
+        action(:wbgetentities, token_type: false, ids: ids, sites: [site_id])
+      end
+
+      def set_qualifier(claim_id, snaktype = "value", property_id, value_data)
+        action(:wbsetqualifier, token_type: "csrf", claim: claim_id, snaktype: snaktype, property: property_id, value: value_data)
+      end
+
+      def set_reference(statement_id, snaks_data)
+        action(:wbsetreference, token_type: "csrf", statement: statement_id, snaks: snaks_data)
+      end
+
       private
 
       def parse_entity_identifier(identifier)

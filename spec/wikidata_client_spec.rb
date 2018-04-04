@@ -171,4 +171,60 @@ describe MediawikiApi::Wikidata::WikidataClient do
       expect(@edit_request).to have_been_requested
     end
   end
+  describe "#get_entities" do
+    subject { client.get_entities(entity_ids, site_id) }
+
+    let(:entity_ids) { ["Q1234","Q234"] }
+    let(:site_id) { "jawiki" }
+    let(:response) { {} }
+
+    before do
+      @edit_request = stub_action_request_without_token(:wbgetentities, ids: entity_ids.join("|"), sites: site_id).
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
+  describe "#set_qualifier" do
+    subject { client.set_qualifier(claim_id, property_id, value) }
+
+    let(:claim_id) { "Q2$4554c0f4-47b2-1cd9-2db9-aa270064c9f3" }
+    let(:snaktype) { "value" }
+    let(:property_id) { "P1234" }
+    let(:value) { "stringtest".to_json }
+    let(:response) { {} }
+
+    before do
+      stub_token_request(:csrf)
+      @edit_request = stub_action_request(:wbsetqualifier, claim: claim_id, snaktype: snaktype, property: property_id, value: value).
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
+  describe "#set_reference" do
+    subject { client.set_reference(statement_id, snaks) }
+
+    let(:statement_id) { "Q76$D4FDE516-F20C-4154-ADCE-7C5B609DFDFF" }
+    let(:property_id) { "P1234" }
+    let(:snaks) {{property_id=>[{"snaktype"=>"value", "property"=>property_id, "datavalue"=>"stringtest"}]}.to_json}
+    let(:response) { {} }
+
+    before do
+      stub_token_request(:csrf)
+      @edit_request = stub_action_request(:wbsetreference, statement: statement_id, snaks: snaks).
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
 end
