@@ -47,8 +47,12 @@ module MediawikiApi
         action(:wbcreateclaim, token_type: "csrf", entity: entity_id, snaktype: snaktype, property: property_id, value: value_data)
       end
 
-      def get_entities(ids, site_id)
-        action(:wbgetentities, token_type: false, ids: ids, sites: [site_id])
+      def get_entities(ids)
+        action(:wbgetentities, token_type: false, ids: ids)
+      end
+
+      def get_entities_by_titles(titles, sites)
+        action(:wbgetentities, token_type: false, titles: titles, sites: sites)
       end
 
       def set_qualifier(claim_id, snaktype = "value", property_id, value_data)

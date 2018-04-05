@@ -172,14 +172,30 @@ describe MediawikiApi::Wikidata::WikidataClient do
     end
   end
   describe "#get_entities" do
-    subject { client.get_entities(entity_ids, site_id) }
+    subject { client.get_entities(entity_ids) }
 
     let(:entity_ids) { ["Q1234","Q234"] }
-    let(:site_id) { "jawiki" }
     let(:response) { {} }
 
     before do
-      @edit_request = stub_action_request_without_token(:wbgetentities, ids: entity_ids.join("|"), sites: site_id).
+      @edit_request = stub_action_request_without_token(:wbgetentities, ids: entity_ids.join("|")).
+          to_return(body: response.to_json)
+    end
+
+    it "makes the right request" do
+      subject
+      expect(@edit_request).to have_been_requested
+    end
+  end
+  describe "#get_entities_by_titles" do
+    subject { client.get_entities_by_titles(titles, site_ids) }
+
+    let(:titles) { "mediawiki" }
+    let(:site_ids) { ["jawiki"] }
+    let(:response) { {} }
+
+    before do
+      @edit_request = stub_action_request_without_token(:wbgetentities, titles: titles, sites: site_ids.join("|")).
           to_return(body: response.to_json)
     end
 
