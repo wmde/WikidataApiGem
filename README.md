@@ -36,6 +36,10 @@ wikidata_client.search_entities "test", "en", "item" #searches for items contain
 ```
 
 ## Release notes
+### 0.3.0 (2021-06-08)
+- Compatible with [mediawiki_api 7.0](https://rubygems.org/gems/mediawiki_api/versions/0.7.1)
+- Compatible with  Ruby 2.5
+- Support for several API actions.
 
 ### 0.2.1 (2016-05-26)
 - Compatible with [mediawiki_api 6.0](https://rubygems.org/gems/mediawiki_api/versions/0.6.0)
