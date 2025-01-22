@@ -1,3 +1,5 @@
+DISCONTINUED: This library is no longer maintained.
+
 # Wikidata API Gem
 
 [![Build Status](https://api.travis-ci.org/wmde/WikidataApiGem.png?branch=master)](http://travis-ci.org/wmde/WikidataApiGem)
